@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dklfum1olplgl"]
+
+[ext_resource type="Script" uid="uid://qjwq68pkrkqa" path="res://arm_segment.gd" id="1_d20cg"]
+[ext_resource type="Texture2D" uid="uid://bvmgxuforcn3" path="res://edge1.png" id="1_p1aok"]
+[ext_resource type="Texture2D" uid="uid://bh4l68udamq4j" path="res://dot.png" id="2_rubed"]
+[ext_resource type="Texture2D" uid="uid://j6eduw7eibh0" path="res://punct.png" id="4_mpq3h"]
+
+[node name="Segment" type="Node2D"]
+script = ExtResource("1_d20cg")
+
+[node name="PuncLeft" type="Node2D" parent="."]
+
+[node name="PuncLeft" type="Sprite2D" parent="PuncLeft"]
+show_behind_parent = true
+position = Vector2(20, 0)
+texture = ExtResource("4_mpq3h")
+
+[node name="PunctRight" type="Node2D" parent="."]
+
+[node name="PunctRight" type="Sprite2D" parent="PunctRight"]
+position = Vector2(20, 0)
+texture = ExtResource("4_mpq3h")
+
+[node name="start" type="Node2D" parent="."]
+
+[node name="end" type="Node2D" parent="."]
+position = Vector2(89.347, 0)
+
+[node name="Edge1" type="Sprite2D" parent="."]
+position = Vector2(45.939, 0.445)
+texture = ExtResource("1_p1aok")
+
+[node name="Dot" type="Sprite2D" parent="."]
+position = Vector2(1.0848e-05, -7.27177e-06)
+rotation = 0.47822
+texture = ExtResource("2_rubed")

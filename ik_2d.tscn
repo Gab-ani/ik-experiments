@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://db6wecncbsnum"]
+
+[ext_resource type="Script" uid="uid://chu2wai4ocgs4" path="res://demo_controller.gd" id="1_f4p0w"]
+[ext_resource type="PackedScene" uid="uid://dklfum1olplgl" path="res://segment.tscn" id="1_tbbr2"]
+[ext_resource type="Script" uid="uid://mo47wbon5dq0" path="res://CCDIK.gd" id="1_vq52j"]
+[ext_resource type="Script" uid="uid://5pbroxlgirke" path="res://GreedyCCDIK.gd" id="3_mnivk"]
+[ext_resource type="Script" uid="uid://boclhqfrx5ls3" path="res://ConstrainedGreedyCCDIK.gd" id="4_0jouy"]
+[ext_resource type="Texture2D" uid="uid://bgs83srjrfnk" path="res://dot2.png" id="4_7y5jf"]
+[ext_resource type="Script" uid="uid://o5i5xqjn8aoq" path="res://ConstrainedCCDIK.gd" id="5_vf7e1"]
+[ext_resource type="Script" uid="uid://dm56wi28c04y2" path="res://BestFormCCDIK.gd" id="6_ba2uw"]
+
+[sub_resource type="Curve" id="Curve_wno6w"]
+_limits = [-1.0, 1000.0, -1.0, 1000.0]
+_data = [Vector2(-1, -1), 0.0, 0.0, 0, 0, Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1000, 1000), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_neipt"]
+_limits = [-1.0, 100.0, -1.0, 1.0]
+_data = [Vector2(-1, 1.56375), 0.0, 0.0, 0, 0, Vector2(-0.0238096, 1.56375), -0.0010695, -0.0010695, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_hchvy"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(-0.273973, 0.4), -2.38909, -2.38909, 0, 0, Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.239726, 0.372727), 2.3596, 2.3596, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="IK2D" type="Node2D"]
+
+[node name="debug label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 265.0
+offset_bottom = 122.0
+
+[node name="DemoController" type="Node" parent="." node_paths=PackedStringArray("ik_solver")]
+script = ExtResource("1_f4p0w")
+ik_solver = NodePath("../BestFormCCDIK")
+
+[node name="ClassicCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
+script = ExtResource("1_vq52j")
+debug_label = NodePath("../debug label")
+first_segment = NodePath("../Segment")
+
+[node name="GreedyCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
+script = ExtResource("3_mnivk")
+debug_label = NodePath("../debug label")
+first_segment = NodePath("../Segment")
+
+[node name="ConstrainedCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
+script = ExtResource("5_vf7e1")
+debug_label = NodePath("../debug label")
+first_segment = NodePath("../Segment")
+
+[node name="ConstrainedGreedyCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
+script = ExtResource("4_0jouy")
+debug_label = NodePath("../debug label")
+first_segment = NodePath("../Segment")
+
+[node name="BestFormCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
+script = ExtResource("6_ba2uw")
+distance_weight = SubResource("Curve_wno6w")
+stress_weight = SubResource("Curve_neipt")
+stress_value = SubResource("Curve_hchvy")
+debug_label = NodePath("../debug label")
+first_segment = NodePath("../Segment")
+
+[node name="Segment" parent="." instance=ExtResource("1_tbbr2")]
+position = Vector2(170.665, 264.355)
+rotation = -0.424115
+
+[node name="Segment" parent="Segment" instance=ExtResource("1_tbbr2")]
+position = Vector2(80.171, 0)
+rotation = 0.565487
+
+[node name="Segment" parent="Segment/Segment" instance=ExtResource("1_tbbr2")]
+position = Vector2(80.171, 0)
+rotation = 0.705113
+
+[node name="Segment" parent="Segment/Segment/Segment" instance=ExtResource("1_tbbr2")]
+rotation = 0.282743
+
+[node name="Segment" parent="Segment/Segment/Segment/Segment" instance=ExtResource("1_tbbr2")]
+rotation = -0.424115
+
+[node name="Segment" parent="Segment/Segment/Segment/Segment/Segment" instance=ExtResource("1_tbbr2")]
+position = Vector2(80.171, 0)
+rotation = -0.424115
+
+[node name="Segment" parent="Segment/Segment/Segment/Segment/Segment/Segment" instance=ExtResource("1_tbbr2")]
+position = Vector2(80.171, 0)
+rotation = -0.549779
+
+[node name="cringe" type="Node2D" parent="."]
+
+[node name="Dot1" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot2" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot3" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot4" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot5" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot6" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot7" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot8" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
+
+[node name="Dot9" type="Sprite2D" parent="cringe"]
+position = Vector2(-89, 294)
+texture = ExtResource("4_7y5jf")
