@@ -34,7 +34,7 @@ offset_bottom = 122.0
 
 [node name="DemoController" type="Node" parent="." node_paths=PackedStringArray("ik_solver")]
 script = ExtResource("1_f4p0w")
-ik_solver = NodePath("../BestFormCCDIK")
+ik_solver = NodePath("../ConstrainedCCDIK")
 
 [node name="ClassicCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
 script = ExtResource("1_vq52j")
