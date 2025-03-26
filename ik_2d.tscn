@@ -15,8 +15,8 @@ _data = [Vector2(-1, -1), 0.0, 0.0, 0, 0, Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_neipt"]
-_limits = [-1.0, 100.0, -1.0, 1.0]
-_data = [Vector2(-1, 1.56375), 0.0, 0.0, 0, 0, Vector2(-0.0238096, 1.56375), -0.0010695, -0.0010695, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+_limits = [-1.0, 500.0, -1.0, 1.0]
+_data = [Vector2(-1, 1.56375), 0.0, 0.0, 0, 0, Vector2(-0.0238096, 1.56375), -0.0010695, -0.0010695, 0, 0, Vector2(1, 500), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_hchvy"]
@@ -34,7 +34,7 @@ offset_bottom = 122.0
 
 [node name="DemoController" type="Node" parent="." node_paths=PackedStringArray("ik_solver")]
 script = ExtResource("1_f4p0w")
-ik_solver = NodePath("../ConstrainedCCDIK")
+ik_solver = NodePath("../BestFormCCDIK")
 
 [node name="ClassicCCDIK" type="Node" parent="." node_paths=PackedStringArray("debug_label", "first_segment")]
 script = ExtResource("1_vq52j")

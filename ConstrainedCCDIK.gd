@@ -6,10 +6,8 @@ class_name ConstrainedCCDIK
 
 func step() -> Array[float]:
 	var output : Array[float] = cache.duplicate()
-	last_touched_segment -= 1
-	if last_touched_segment == -1:
-		last_touched_segment = segments.size() - 1
 	
+	last_touched_segment = choose_segment()
 	var endpoint : Vector2 = get_cached_end_position(output, segments.size()-1)
 	var joint_to_end : Vector2 = get_cached_transform(output, last_touched_segment).origin.direction_to(endpoint)
 	var joint_to_goal : Vector2 = get_cached_transform(output, last_touched_segment).origin.direction_to(goal_position)
@@ -21,8 +19,8 @@ func step() -> Array[float]:
 	return output
 
 
-func choose_segment(cache : Array[float]) -> int:
+func choose_segment() -> int:
 	last_touched_segment -= 1
 	if last_touched_segment == -1:
-		last_touched_segment = 6
+		last_touched_segment = segments.size() - 1
 	return last_touched_segment
